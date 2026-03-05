@@ -1,12 +1,29 @@
 {
-  "name": "arc-browser-mcp",
+  "name": "@alango/arc-devtools-mcp",
   "version": "0.1.0",
-  "description": "MCP server to control Arc via AppleScript",
+  "description": "MCP server to control Arc via AppleScript, with optional CDP support",
   "type": "module",
-  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gtg7784/arc-devtools-mcp.git"
+  },
+  "bin": {
+    "arc-devtools-mcp": "./dist/cli.js"
+  },
+  "files": [
+    "dist/**",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "tsx src/index.ts",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "build": "bun build src/cli.ts --outdir dist --target node --format esm",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "prepack": "bun run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",

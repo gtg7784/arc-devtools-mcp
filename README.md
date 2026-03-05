@@ -20,6 +20,14 @@ bun install
 bun run dev
 ```
 
+## bunx
+
+After publishing to npm, you can run it without cloning:
+
+```bash
+bunx --package @alango/arc-devtools-mcp arc-devtools-mcp
+```
+
 ## Tools
 
 AppleScript:
