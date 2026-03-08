@@ -173,17 +173,26 @@ Connect to CDP and read console/network:
 
 ## CDP (Console / Network)
 
-Arc's remote debugging WebSocket can reject non-DevTools clients unless you allow the Origin.
+CDP tools (`arc_cdp_*`) require Arc to be running with a remote debugging port enabled. There are two ways to set this up:
 
-To enable CDP for this server:
+### Option 1: Via `arc://inspect` (Recommended)
 
-1) Quit Arc
+1. Open Arc and navigate to `arc://inspect/#remote-debugging`
+2. Follow the dialog to enable remote debugging
+
+Once enabled, the MCP server can connect to Arc automatically.
+
+### Option 2: Launch Arc with flags
+
+If Option 1 is not available, you can launch Arc manually with the remote debugging flags:
+
+**Step 1:** Quit Arc
 
 ```bash
 osascript -e 'tell application "Arc" to quit'
 ```
 
-2) Relaunch Arc with flags
+**Step 2:** Relaunch Arc with flags
 
 ```bash
 open -na "Arc" --args \
@@ -191,13 +200,15 @@ open -na "Arc" --args \
   --remote-allow-origins=http://127.0.0.1
 ```
 
-If you want to allow any Origin (less strict):
+If you want to allow any origin (less strict):
 
 ```bash
 open -na "Arc" --args \
   --remote-debugging-port=9222 \
   --remote-allow-origins=*
 ```
+
+> **Warning:** Enabling the remote debugging port opens a debugging port on the running browser instance. Any application on your machine can connect to this port and control the browser. Avoid browsing sensitive websites while the debugging port is open.
 
 ### Environment variables
 
