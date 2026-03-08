@@ -20,13 +20,100 @@ bun install
 bun run dev
 ```
 
-## bunx
+## Getting started
 
-After publishing to npm, you can run it without cloning:
+Add the following config to your MCP client:
+
+```json
+{
+  "mcpServers": {
+    "arc-devtools": {
+      "command": "bunx",
+      "args": ["--bun", "@alango/arc-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+> **Note:** Using `@alango/arc-devtools-mcp@latest` ensures that your MCP client will always use the latest version.
+
+### MCP Client configuration
+
+<details>
+  <summary>Claude Code</summary>
+
+Use the Claude Code CLI to add the Arc DevTools MCP server:
 
 ```bash
-bunx --package @alango/arc-devtools-mcp arc-devtools-mcp
+claude mcp add arc-devtools --scope user -- bunx --bun @alango/arc-devtools-mcp@latest
 ```
+
+</details>
+
+<details>
+  <summary>Claude Desktop</summary>
+
+Add the following to your `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "arc-devtools": {
+      "command": "bunx",
+      "args": ["--bun", "@alango/arc-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary>Cursor</summary>
+
+Go to `Cursor Settings` -> `MCP` -> `New MCP Server`. Use the config provided above.
+
+</details>
+
+<details>
+  <summary>Copilot / VS Code</summary>
+
+Follow the MCP install <a href="https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_add-an-mcp-server">guide</a> and use the config provided above.
+
+</details>
+
+<details>
+  <summary>Cline</summary>
+
+Follow <a href="https://docs.cline.bot/mcp/configuring-mcp-servers">the guide</a> and use the config provided above.
+
+</details>
+
+<details>
+  <summary>Windsurf</summary>
+
+Follow the <a href="https://docs.windsurf.com/windsurf/cascade/mcp#mcp-config-json">configure MCP guide</a> and use the config provided above.
+
+</details>
+
+<details>
+  <summary>OpenCode</summary>
+
+Add the following to your `opencode.json` (<a href="https://opencode.ai/docs/mcp-servers">guide</a>):
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "arc-devtools": {
+      "type": "local",
+      "command": ["bunx", "--bun", "@alango/arc-devtools-mcp@latest"]
+    }
+  }
+}
+```
+
+</details>
 
 ## Tools
 
@@ -49,24 +136,6 @@ CDP (remote debugging):
 - `arc_cdp_disconnect`
 - `arc_cdp_get_console`
 - `arc_cdp_get_network`
-
-## OpenCode configuration
-
-Add an MCP entry pointing at this repo:
-
-```json
-{
-  "mcp": {
-    "arc": {
-      "command": "bash",
-      "args": [
-        "-lc",
-        "cd /Users/alan/Developments/arc-browser-mcp && bun run dev"
-      ]
-    }
-  }
-}
-```
 
 ## Examples
 
